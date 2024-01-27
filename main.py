@@ -24,7 +24,7 @@ alien_img = pygame.image.load('graphic/alien.png')
 
 ## Load and set Window Icon
 icon_img = pygame.image.load('graphic/icon.png')
-pygame.display.set_icon(icon)
+pygame.display.set_icon(icon_img)
 
 # FONT
 
@@ -40,7 +40,7 @@ running = True
 while running:
     for event in pygame.event.get():
         # Detech quit action
-        if event.type == pygame.QUIT():
+        if event.type == pygame.QUIT:
             running = False
     
     # GAME LOGIC
