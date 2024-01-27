@@ -21,7 +21,7 @@ player_img = pygame.image.load('graphic/player.png')
 ## Load alien image
 alien_img = pygame.image.load('graphic/alien.png')
 ## Load laser image
-
+laser_img = pygame.image.load('graphic/laser.png')
 ## Load and set Window Icon
 icon_img = pygame.image.load('graphic/icon.png')
 pygame.display.set_icon(icon_img)
