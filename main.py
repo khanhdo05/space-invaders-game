@@ -24,14 +24,23 @@ player_img = pygame.transform.scale(player_img, (WIDTH // 8, HEIGHT // 6))
 alien_img = pygame.image.load('graphic/alien.png')
 ## Load laser image
 laser_img = pygame.image.load('graphic/laser.png')
+laser_img = pygame.transform.scale(laser_img, (WIDTH // 16, HEIGHT // 12))
 ## Load and set Window Icon
 icon_img = pygame.image.load('graphic/icon.png')
 pygame.display.set_icon(icon_img)
 
 # PLAYER PROPORTIES
-# Position
+## Position
 player_x = WIDTH // 2 - (WIDTH / 16)
 player_y = HEIGHT - (HEIGHT / 4.8)
+
+# LASER PROPORTIES
+## Position
+laser_x = WIDTH // 2 - (WIDTH / 32)
+laser_y = HEIGHT - (WIDTH / 4.57142857)
+## Speed
+laser_speed = 20
+laser_state = "ready"
 
 # FONT
 
@@ -60,7 +69,7 @@ while running:
     # Draw the alien
 
     # Draw the laser
-
+    screen.blit(laser_img, (laser_x, laser_y))
     # Draw the score
 
     # UPDATE DISPLAY
