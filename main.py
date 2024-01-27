@@ -17,10 +17,14 @@ pygame.display.set_caption(TITLE)
 ## Load background image
 background_img = pygame.image.load('graphic/background.png')
 ## Load player image
-
+player_img = pygame.image.load('graphic/player.png')
 ## Load alien image
-
+alien_img = pygame.image.load('graphic/alien.png')
 ## Load laser image
+
+## Load and set Window Icon
+icon_img = pygame.image.load('graphic/icon.png')
+pygame.display.set_icon(icon)
 
 # FONT
 
