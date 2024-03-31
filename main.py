@@ -24,6 +24,7 @@ class Game:
         self.laser_img = pygame.transform.scale(self.laser_img, (self.WIDTH // 16, self.HEIGHT // 12))
         
         # Player properties
+        self.player_speed = 5
         self.player_x = self.WIDTH // 2 - (self.WIDTH / 16)
         self.player_y = self.HEIGHT - (self.HEIGHT / 4.8)
         
@@ -50,24 +51,26 @@ class Game:
         self.screen.blit(self.player_img, (self.player_x, self.player_y))
         self.screen.blit(self.laser_img, (self.laser_x, self.laser_y))
         pygame.display.flip()
+    
+    def player_movements(self):
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT]:
+            self.player_x -= self.player_speed
+        if keys[pygame.K_RIGHT]:
+            self.player_x += self.player_speed
+
+        # Ensure the player stays within the screen boundaries
+        if self.player_x < 0:
+            self.player_x = 0
+        if self.player_x > self.WIDTH - self.player_img.get_width():
+            self.player_x = self.WIDTH - self.player_img.get_width()
         
     def run(self):
         running = True
         while running:
             running = self.handle_events()
             self.draw()
-            player_speed = 5
-            keys = pygame.key.get_pressed()
-            if keys[pygame.K_LEFT]:
-                self.player_x -= player_speed
-            if keys[pygame.K_RIGHT]:
-                self.player_x += player_speed
-
-            # Ensure the player stays within the screen boundaries
-            if self.player_x < 0:
-                self.player_x = 0
-            if self.player_x > self.WIDTH - self.player_img.get_width():
-                self.player_x = self.WIDTH - self.player_img.get_width()
+            self.player_movements()
             self.clock.tick(30)  # 30 frames per second
         pygame.quit()
         exit()
