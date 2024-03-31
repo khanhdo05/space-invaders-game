@@ -56,6 +56,18 @@ class Game:
         while running:
             running = self.handle_events()
             self.draw()
+            player_speed = 5
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_LEFT]:
+                self.player_x -= player_speed
+            if keys[pygame.K_RIGHT]:
+                self.player_x += player_speed
+
+            # Ensure the player stays within the screen boundaries
+            if self.player_x < 0:
+                self.player_x = 0
+            if self.player_x > self.WIDTH - self.player_img.get_width():
+                self.player_x = self.WIDTH - self.player_img.get_width()
             self.clock.tick(30)  # 30 frames per second
         pygame.quit()
         exit()
