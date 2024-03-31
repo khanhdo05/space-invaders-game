@@ -64,13 +64,32 @@ class Game:
             self.player_x = 0
         if self.player_x > self.WIDTH - self.player_img.get_width():
             self.player_x = self.WIDTH - self.player_img.get_width()
+    
+    def control_laser(self):
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:  # Detect spacebar press
+                    if self.laser_state == "ready":
+                        # Set the laser's initial position to the spaceship's tip
+                        self.laser_x = self.player_x + 50
+                        self.laser_y = self.player_y + 50 
+                        self.laser_state = "fire"
+        # Laser movement                
+        if self.laser_state == "fire":
+            self.screen.blit(self.laser_img, (self.laser_x, self.laser_y))
+            self.laser_y -= self.laser_speed
+
+        # Check if the laser has gone off-screen
+        if self.laser_y < 0:
+            self.laser_state = "ready"
         
     def run(self):
         running = True
         while running:
             running = self.handle_events()
-            self.draw()
+            self.draw() 
             self.player_movements()
+            self.control_laser()            
             self.clock.tick(30)  # 30 frames per second
         pygame.quit()
         exit()
